@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-web-page
+  namespace: first-app-namespace
+  labels:
+    app: sample-web-page
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sample-web-page
+  template:
+    metadata:
+      labels:
+        app: sample-web-page
+    spec:
+      containers:
+      - name: sample-app-api
+        image: codefirst.azurecr.io/sample-webpage:0.1
+        ports:
+        - containerPort: 80
