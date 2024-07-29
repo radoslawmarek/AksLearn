@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: first-app-ingress
+  namespace: first-app-namespace
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /sample-web-app
+        pathType: Prefix
+        backend:
+          service:
+            name: sample-web-app-service
+            port:
+              number: 80
+      
