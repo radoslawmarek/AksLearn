@@ -5,10 +5,11 @@ locals {
 
 
 resource "azurerm_kubernetes_cluster" "aks" {
-  name                = local.aks_cluster_name
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-  dns_prefix          = local.aks_cluster_name
+  name                             = local.aks_cluster_name
+  location                         = azurerm_resource_group.rg.location
+  resource_group_name              = azurerm_resource_group.rg.name
+  dns_prefix                        = local.aks_cluster_name
+  http_application_routing_enabled = true
 
   default_node_pool {
     name       = local.default_node_pool_name
